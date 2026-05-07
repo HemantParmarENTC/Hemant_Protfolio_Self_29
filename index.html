@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hemant Parmar Portfolio </title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:250px;
+    background:#0f2883;
+    color:white;
+    height:100vh;
+    position:fixed;
+    padding:20px;
+    text-align:center;
+}
+
+/* --- FLIP CARD CORE CSS --- */
+.flip-card {
+    background-color: transparent;
+    perspective: 1000px; 
+    margin: 0 auto 20px auto;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 2px solid #38bdf8;
+}
+
+.flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.flip-card-back {
+    background-color: #38bdf8;
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.flip-card-back h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Specific styling for the Circular Profile Card */
+.profile-card {
+    width: 120px;
+    height: 120px;
+}
+.profile-card .flip-card-front, .profile-card .flip-card-back {
+    border-radius: 50%;
+}
+
+/* --- END FLIP CARD CSS --- */
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:10px;
+    margin:5px 0;
+}
+
+.sidebar a:hover{
+    background:#38bdf8;
+}
+
+/* MAIN CONTENT */
+.main{
+    margin-left:270px;
+    padding:20px;
+    width:calc(100% - 290px);
+}
+
+section{
+    margin-bottom:40px;
+}
+
+.card{
+    background:#f1f5f9;
+    padding:20px;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+/* SKILLS */
+.skill{
+    margin:10px 0;
+}
+
+.bar{
+    height:8px;
+    background:#cbd5f5;
+    border-radius:5px;
+}
+
+.fill{
+    height:8px;
+    background:#38bdf8;
+    border-radius:5px;
+}
+
+/* RESUME */
+.resume-container{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.resume-box{
+    flex:1;
+    background:white;
+    padding:15px;
+    border-left:3px solid #38bdf8;
+    border-radius:8px;
+}
+
+/* PROJECTS */
+.project-list {
+    display: flex; 
+    gap: 30px; 
+    flex-wrap: wrap; 
+    justify-content: flex-start;
+}
+
+.project-item {
+    width: 300px;
+    text-align: center;
+}
+
+.project-item .flip-card-front, .project-item .flip-card-back {
+    border-radius: 10px;
+}
+
+/* STUDENT & OPTIMIST SECTION */
+.student-optimist {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.student-photo-box {
+    width: 160px;
+    min-width: 160px;
+    height: 190px;
+    background: #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px dashed #38bdf8;
+    color: #94a3b8;
+    font-size: 13px;
+    text-align: center;
+}
+
+.student-photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.student-info {
+    flex: 1;
+}
+
+.student-info h2 {
+    margin: 0 0 4px 0;
+    font-size: 22px;
+    color: #010516;
+}
+
+.student-info .tagline {
+    font-style: italic;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 12px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    margin-bottom: 18px;
+}
+
+.info-item {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.info-item .info-label {
+    color: #000000;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.info-item .info-label::before {
+    content: "›";
+    color: #38bdf8;
+    margin-right: 4px;
+    font-weight: bold;
+}
+
+.info-item .info-value {
+    color: #334155;
+    border-bottom: 1px dotted #cbd5e1;
+    min-width: 80px;
+}
+
+.student-bio {
+    font-size: 13.5px;
+    color: #475569;
+    line-height: 1.7;
+    margin-top: 10px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    
+    <div class="flip-card profile-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <img src="D:\HP\Hemant.jpg.jpeg" alt="Hemant Parmar">
+            </div>
+            <div class="flip-card-back">
+                <h3>Hemant Parmar</h3>
+                <p style="font-size: 11px;">B.Tech ENTC</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#resume">Resume</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+</div>
+
+<div class="main">
+
+<section id="home">
+    <h1>Hemant Achalaram Parmar</h1>
+    <p>Engineering Student | ENTC</p>
+</section>
+
+<section id="about">
+    <h2>About</h2>
+
+    <!-- Student & Optimist Card -->
+    <div class="student-optimist">
+        <div class="student-photo-box">
+            <img src="D:\HP\Hemant.jpg.jpeg" alt="Hemant Parmar" onerror="this.closest('.student-photo-box').style.display='none';">
+        </div>
+
+        <div class="student-info">
+            <h2>Student &amp; Optimist</h2>
+            <p class="tagline">It is important for us to know what we are doing and what we are aiming for by being a realist.</p>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Birthday: 28 June 2006</span>
+                    <span class="info-value">&nbsp;</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Age: 20</span>
+                    <span class="info-value">&nbsp;</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Degree: Bachelor Of Technology</span>
+                    <span class="info-value">&nbsp;</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Phone: 9767959115</span>
+                    <span class="info-value">&nbsp;</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Email: hemantparmar7414@gmail.com</span>
+                    <span class="info-value">&nbsp;</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">City: Pune</span>
+                    <span class="info-value">&nbsp;</span>
+                </div>
+            </div>
+
+            <p class="student-bio">
+                I am Hemant, a first-year B.Tech student in Electronics and Telecommunication Engineering at MIT Academy of Engineering. 
+                I am passionate about technology, electronics, and programming. I enjoy learning new concepts and applying them through practical projects.
+                My interests include electronics circuits, programming with Python, and exploring modern technologies that can solve real-world problems.
+                I am continuously improving my technical skills and working on projects that enhance my understanding of engineering and software development.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="resume">
+    <h2>Resume</h2>
+
+    <div class="card">
+        <p>Dedicated student committed to academic excellence, with a passion for learning and strong communication skills.</p>
+
+        <div class="resume-container">
+            <div class="resume-box">
+                <h3>Summary</h3>
+                <p><b>Hemant Parmar</b></p>
+                <p>Engineering student passionate about electronics and programming.</p>
+                <ul>
+                    <li>Pune, India</li>
+                    <li>8010891706</li>
+                    <li>hemantparmar7414@email.com</li>
+                </ul>
+
+                <h3>Education</h3>
+                <p><b>Class 12</b> - 74.80%</p>
+                <p><b>Class 10</b> - 85.20%</p>
+            </div>
+
+            <div class="resume-box">
+                <h3>Degree</h3>
+                <p><b>B.Tech ENTC (2025 - Present)</b></p>
+                <ul>
+                    <li>MIT Academy of Engineering</li>
+                    <li>Learning electronics and programming</li>
+                    <li>Working on practical projects</li>
+                </ul>
+
+                <h3>Future</h3>
+                <p>Planning to build strong technical skills and pursue advanced opportunities in engineering.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="card">
+        <div class="skill">Python
+            <div class="bar"><div class="fill" style="width:70%"></div></div>
+        </div>
+        <div class="skill">C Programming
+            <div class="bar"><div class="fill" style="width:60%"></div></div>
+        </div>
+        <div class="skill">HTML
+            <div class="bar"><div class="fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill">PCB Making
+            <div class="bar"><div class="fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill">PCB Design
+            <div class="bar"><div class="fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill">Arduino Coding
+            <div class="bar"><div class="fill" style="width:72%"></div></div>
+        </div>
+        <div class="skill">Augmented Reality (Using Unity, AR Snap Website)
+            <div class="bar"><div class="fill" style="width:12%"></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="card">
+        <div class="project-list">
+
+            <!-- PROJECT 1: RC River Trash Collector -->
+            <div class="project-item">
+                <div class="flip-card" style="height: 200px;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="D:\HP\RC.jpeg" alt="RC">
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>RC River Trash Collector</h3>
+                            <p style="font-size: 13px; padding: 0 10px;">
+                                The RC River Trash Collector is a remote-controlled floating robot that collects surface waste from water bodies using a mesh net, inflatable tubes, and geared DC motors. Powered by an Arduino-based control unit, it offers a simple and effective low-cost solution for tackling river and lake pollution.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p><b>RC RIVER TRASH COLLECTOR</b></p>
+            </div>
+
+            <!-- PROJECT 2: Weight Measurement Using Chair -->
+            <div class="project-item">
+                <div class="flip-card" style="height: 200px;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="D:\HP\Weight.png" alt="Weight Measurement">
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Weight Measurement Using Chair</h3>
+                            <p style="font-size: 13px; padding: 0 10px;">
+                                This project uses an Arduino Uno R3 with a Load Cell and HX711 module embedded in a chair to measure a person's weight accurately in real time. A connected display shows the reading, while a buzzer and LED provide alerts when the weight exceeds a set limit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p><b>WEIGHT MEASUREMENT USING CHAIR</b></p>
+            </div>
+
+            <!-- PROJECT 3: Clap Switch Schematic Circuit -->
+            <div class="project-item">
+                <div class="flip-card" style="height: 200px;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="D:\HP\Pcb.jpeg" alt="PCB">
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Clap Switch Schematic</h3>
+                            <p style="font-size: 13px; padding: 0 10px;">
+                                Schematic diagram only — designed and simulated using KiCAD.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p><b>CLAP SWITCH SCHEMATIC CIRCUIT</b></p>
+            </div>
+
+            <!-- PROJECT 4: Clap Switch Prototype -->
+            <div class="project-item">
+                <div class="flip-card" style="height: 200px;">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="D:\HP\clap switch.jpeg" alt="PCB">
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Clap Switch Prototype</h3>
+                            <p style="font-size: 13px; padding: 0 10px;">
+                                The Clap Switch Prototype is a sound-activated circuit built on a breadboard that uses a microphone and transistor to toggle an LED and buzzer on and off with a clap. It demonstrates basic electronics concepts like sound sensing, signal amplification, and switching in a simple hands-on build.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p><b>CLAP SWITCH PROTOTYPE</b></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+        <p>Email: hemantparmar7414@gmail.com</p>
+        <p>Contact: 9767959115</p>
+        <p>Location: Pune, Maharashtra, India</p>
+    </div>
+</section>
+
+</div>
+
+</body>
+</html>
